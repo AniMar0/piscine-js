@@ -7,6 +7,10 @@ function isPositive(number){
 }
 
 function abs(number){
+
+    if (number == 0) {
+        return 0
+    }
     
     if (isPositive(number)){
         return number
