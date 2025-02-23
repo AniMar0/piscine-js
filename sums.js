@@ -3,14 +3,14 @@ function sums(number) {
 
     function findPartitions(remaining, partition, start) {
         if (remaining === 0) {
-            result.push([...partition]); // تخزين تقسيم صحيح عند الوصول للمجموع المطلوب
+            result.push([...partition]);
             return;
         }
 
         for (let i = start; i <= remaining; i++) {
-            partition.push(i); // إضافة الرقم الحالي إلى التقسيم
-            findPartitions(remaining - i, partition, i); // استدعاء الدالة مع المجموع المتبقي
-            partition.pop(); // إزالة آخر عنصر للعودة خطوة للخلف (Backtracking)
+            partition.push(i); 
+            findPartitions(remaining - i, partition, i);
+            partition.pop(); 
         }
     }
 
