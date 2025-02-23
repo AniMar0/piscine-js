@@ -1,7 +1,3 @@
-// function trunc(num) {
-//     return num -  modulo(num,1)
-// }
-
 function trunc(num) {
 
     let negative = false
@@ -14,12 +10,12 @@ function trunc(num) {
 
     while (newNum >= 1) {
 
-        if(newNum>= 10000000000){
+        if (newNum >= 10000000000) {
             newNum -= 10000000000
-        }else{
+        } else {
             newNum--
         }
-        
+
     }
 
     if (negative) {
@@ -30,10 +26,6 @@ function trunc(num) {
 
 function round(num) {
     let isnegative = false
-
-    if (num == -0) {
-        return -0
-    }
 
     if (num < 0) {
         isnegative = true
@@ -53,14 +45,13 @@ function round(num) {
             return trunc(num)
         }
     }
+
+
 }
 
 function floor(num) {
     let isnegative = false
 
-    if (num == -0) {
-        return -0
-    }
     if (num < 0) {
         isnegative = true
     }
@@ -68,7 +59,7 @@ function floor(num) {
 
 
     if (isnegative) {
-        if (trunc(num + 0.49) == trunc(num + 1)) {
+        if (isFloot(num)) {
             return -trunc(num + 1)
         } else {
             return -trunc(num)
@@ -79,11 +70,9 @@ function floor(num) {
 }
 
 function ceil(num) {
+    if (!num) return 0;
     let isnegative = false
 
-    if (num == -0) {
-        return -0
-    }
     if (num < 0) {
         isnegative = true
     }
@@ -100,9 +89,20 @@ function ceil(num) {
 }
 
 function isFloot(num) {
-    return modulo(num, 1) != 0
+    num = Math.abs(num)
+    let newNum = num
+
+
+    while (newNum >= 1) {
+
+        if (newNum >= 10000000000) {
+            newNum -= 10000000000
+        } else {
+            newNum--
+        }
+
+    }
+    return newNum > 0
 }
 
 
-console.log(trunc(1000000000000000.95, 1))
-console.log((-100000000.95) % 1)
