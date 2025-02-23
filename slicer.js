@@ -23,3 +23,7 @@ function slice(arr,from,to){
     }
     return result
 }
+
+
+
+console.log(slice(arr,))

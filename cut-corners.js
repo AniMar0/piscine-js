@@ -1,84 +1,108 @@
-function trunc(num){
-    return Number.length(num)
+// function trunc(num) {
+//     return num -  modulo(num,1)
+// }
+
+function trunc(num) {
+
+    let negative = false
+    if (num < 0) {
+        negative = true
+    }
+    num = Math.abs(num)
+    let newNum = num
+
+
+    while (newNum >= 1) {
+
+        if(newNum>= 10000000000){
+            newNum -= 10000000000
+        }else{
+            newNum--
+        }
+        
+    }
+
+    if (negative) {
+        return -(num - newNum)
+    }
+    return num - newNum
 }
 
-function round(num){
+function round(num) {
     let isnegative = false
-    if (num<0){
+
+    if (num == -0) {
+        return -0
+    }
+
+    if (num < 0) {
         isnegative = true
     }
+    num = Math.abs(num)
 
-    if(trunc(num+0.5) == trunc(num+1)){
-        result = trunc(num+1)
-    }else{
-        result = trunc(num)
+    if (isnegative) {
+        if (trunc(num + 0.49) == trunc(num + 1)) {
+            return -trunc(num + 1)
+        } else {
+            return -trunc(num)
+        }
+    } else {
+        if (trunc(num + 0.5) == trunc(num + 1)) {
+            return trunc(num + 1)
+        } else {
+            return trunc(num)
+        }
     }
+}
 
-    if (isnegative){
-        return result
+function floor(num) {
+    let isnegative = false
+
+    if (num == -0) {
+        return -0
     }
-    return -result
+    if (num < 0) {
+        isnegative = true
+    }
+    num = Math.abs(num)
+
+
+    if (isnegative) {
+        if (trunc(num + 0.49) == trunc(num + 1)) {
+            return -trunc(num + 1)
+        } else {
+            return -trunc(num)
+        }
+    } else {
+        return trunc(num)
+    }
+}
+
+function ceil(num) {
+    let isnegative = false
+
+    if (num == -0) {
+        return -0
+    }
+    if (num < 0) {
+        isnegative = true
+    }
+    num = Math.abs(num)
+
+
+    if (isnegative) {
+        if (isFloot(num)) {
+            return -trunc(num)
+        }
+    } else if (isFloot(num)) {
+        return trunc(num + 1)
+    }
+}
+
+function isFloot(num) {
+    return modulo(num, 1) != 0
 }
 
 
-function multiply(a, b) {
-    let negative = false
-    if (a<0){
-        negative = true
-    }
-    if(b<0&&negative){
-        negative = false
-    }else if (b<0){
-        negative = true
-    }
-
-    a = Math.abs(a)
-    b = Math.abs(b)
-
-    let result = 0
-
-    for (let i = 0; i < b;i++){
-        result += a
-    }
-
-    if (negative){
-        return -result
-    }
-
-    return result
-}
-
-function divide(a, b) {
-    let result = 0
-
-    let negative = false
-    if (a<0){
-        negative = true
-    }
-    if(b<0&&negative){
-        negative = false
-    }else if (b<0){
-        negative = true
-    }
-
-    a = Math.abs(a)
-    b = Math.abs(b)
-
-
-    while (a >= b){
-        a -= b
-        result++
-    }
-
-    if (negative){
-        return -result
-    }
-
-    return result
-}
-
-function modulo(a, b) {
-   return (a-multiply(divide(a,b),b))
-}
-console.log(trunc(15.55))
-console.log(1555-15.55)
+console.log(trunc(1000000000000000.95, 1))
+console.log((-100000000.95) % 1)
